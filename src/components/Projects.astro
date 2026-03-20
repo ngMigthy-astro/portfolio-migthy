@@ -1,6 +1,23 @@
 ---
+import { Image } from "astro:assets";
 import { projects } from "../data/index";
 import { ExternalLink } from "@lucide/astro";
+
+import generadorQr from "../assets/projects/generador-qr.jpg";
+import holidayinnDashboard from "../assets/projects/holidayinn-dashboard.jpg";
+import holidayinnUsuarios from "../assets/projects/holidayinn-usuarios.jpg";
+import portalFinanzas from "../assets/projects/portal-finanzas.jpg";
+import simpsonsApi from "../assets/projects/simpsons-api.jpg";
+
+import type { ImageMetadata } from "astro";
+
+const imageMap: Record<string, ImageMetadata> = {
+  "/projects/generador-qr.jpg": generadorQr,
+  "/projects/holidayinn-dashboard.jpg": holidayinnDashboard,
+  "/projects/holidayinn-usuarios.jpg": holidayinnUsuarios,
+  "/projects/portal-finanzas.jpg": portalFinanzas,
+  "/projects/simpsons-api.jpg": simpsonsApi,
+};
 ---
 
 <section id="projects" class="relative">
@@ -32,9 +49,13 @@ import { ExternalLink } from "@lucide/astro";
 
             <!-- Project image -->
             <div class="relative overflow-hidden h-48 shrink-0">
-              <img
-                src={project.image}
+              <Image
+                src={imageMap[project.image]}
                 alt={project.title}
+                width={600}
+                height={400}
+                format="webp"
+                quality={80}
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />

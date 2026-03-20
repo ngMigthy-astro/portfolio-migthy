@@ -39,7 +39,7 @@ Portfolio personal desarrollado con **Astro** y **Tailwind CSS v4**. Incluye ani
 ├── public/
 │   ├── favicon.svg
 │   ├── hero.jpg
-│   ├── og-image.png
+│   ├── og-image.jpg
 │   └── projects/
 │       ├── generador-qr.jpg
 │       ├── holidayinn-dashboard.jpg
