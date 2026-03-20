@@ -1,0 +1,99 @@
+---
+import { skills } from "../data/index";
+import { Palette, Cpu, Wrench } from "@lucide/astro";
+---
+
+<section id="skills" class="relative">
+  <div
+    class="absolute inset-0 opacity-[0.03] pointer-events-none"
+    style="background: radial-gradient(ellipse at 20% 50%, var(--color-accent) 0%, transparent 60%)"
+  >
+  </div>
+
+  <div class="section-container relative">
+    <!-- Section header -->
+    <div class="reveal mb-16">
+      <p class="text-sm font-mono mb-2" style="color: var(--color-accent)">
+        04. habilidades
+      </p>
+      <h2 class="section-title">Stack tecnológico</h2>
+      <p class="section-subtitle">
+        Herramientas y tecnologías con las que trabajo a diario.
+      </p>
+    </div>
+
+    <!-- Skills grid -->
+    <div class="grid md:grid-cols-3 gap-6">
+      {
+        skills.map((group, i) => (
+          <div
+            class="reveal card"
+            style={`animation-delay: ${i * 0.15}s`}
+          >
+            <!-- Category header -->
+            <div class="flex items-center gap-3 mb-6">
+              {group.icon === 'Palette' && <Palette class="w-6 h-6" style="color: var(--color-accent)" />}
+              {group.icon === 'Cpu' && <Cpu class="w-6 h-6" style="color: var(--color-accent)" />}
+              {group.icon === 'Wrench' && <Wrench class="w-6 h-6" style="color: var(--color-accent)" />}
+              <h3 class="font-semibold text-lg">{group.category}</h3>
+            </div>
+
+            <!-- Skills list -->
+            <div class="space-y-4">
+              {group.items.map((skill) => (
+                <div>
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-sm font-medium">{skill.name}</span>
+                    <span
+                      class="text-xs font-mono"
+                      style="color: var(--color-accent)"
+                    >
+                      {skill.level}%
+                    </span>
+                  </div>
+                  <div class="skill-bar">
+                    <div
+                      class="skill-bar-fill"
+                      data-level={skill.level}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Additional tools/soft skills -->
+    <div class="reveal mt-12">
+      <h3
+        class="text-sm font-mono mb-6 text-center"
+        style="color: var(--color-text-muted)"
+      >
+        También trabajo con
+      </h3>
+      <div class="flex flex-wrap justify-center gap-3">
+        {
+          [
+            "Figma",
+            "Zod",
+            "ESLint",
+            "Prettier",
+            "Husky",
+            "Axios",
+            "NgZorro",
+
+          ].map((tool) => (
+            <span
+              class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:scale-105 cursor-default"
+              style="background-color: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-muted)"
+            >
+              {tool}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

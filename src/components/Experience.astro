@@ -1,0 +1,79 @@
+---
+import { experiences } from "../data/index";
+import { Laptop, Rocket, Settings, MapPin, ChevronRight } from "@lucide/astro";
+---
+
+<section id="experience" class="relative">
+  <div
+    class="absolute inset-0 opacity-[0.02] pointer-events-none"
+    style="background: radial-gradient(ellipse at 80% 50%, var(--color-accent) 0%, transparent 60%)"
+  >
+  </div>
+
+  <div class="section-container relative">
+    <!-- Section header -->
+    <div class="reveal mb-16">
+      <p class="text-sm font-mono mb-2" style="color: var(--color-accent)">
+        02. experiencia
+      </p>
+      <h2 class="section-title">Trayectoria profesional</h2>
+      <p class="section-subtitle">
+        Mi recorrido en el mundo del desarrollo de software.
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative pl-8 border-l" style="border-color: var(--color-border)">
+      {
+        experiences.map((exp, i) => (
+          <div
+            class={`reveal relative pb-12 last:pb-0 timeline-item`}
+            style={`animation-delay: ${i * 0.15}s`}
+          >
+            <!-- Timeline dot -->
+            <div
+              class="absolute -left-[2.35rem] top-1 w-8 h-8 rounded-xl flex items-center justify-center"
+              style="background-color: var(--color-surface); border: 2px solid var(--color-accent)"
+            >
+              {exp.icon === 'Laptop' && <Laptop class="w-4 h-4" style="color: var(--color-accent)" />}
+              {exp.icon === 'Rocket' && <Rocket class="w-4 h-4" style="color: var(--color-accent)" />}
+              {exp.icon === 'Settings' && <Settings class="w-4 h-4" style="color: var(--color-accent)" />}
+            </div>
+
+            <!-- Card -->
+            <div class="card ml-4">
+              <div class="flex flex-wrap items-start justify-between gap-2 mb-4">
+                <div>
+                  <h3 class="text-lg font-semibold">{exp.title}</h3>
+                  <p class="text-sm font-medium mt-0.5" style="color: var(--color-accent)">
+                    {exp.company}
+                  </p>
+                </div>
+                <div class="text-right">
+                  <span
+                    class="text-xs font-mono px-3 py-1 rounded-full"
+                    style="background-color: var(--color-surface-2); color: var(--color-text-muted)"
+                  >
+                    {exp.period}
+                  </span>
+                  <p class="text-xs mt-1 flex items-center gap-1" style="color: var(--color-text-muted)">
+                    <MapPin class="w-3 h-3" />{exp.location}
+                  </p>
+                </div>
+              </div>
+
+              <ul class="space-y-2">
+                {exp.description.map((item) => (
+                  <li class="flex gap-2 text-sm" style="color: var(--color-text-muted)">
+                    <ChevronRight class="w-3.5 h-3.5 mt-0.5 shrink-0" style="color: var(--color-accent)" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
