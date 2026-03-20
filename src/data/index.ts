@@ -8,7 +8,7 @@ export const personalInfo = {
   location: "Irapuato, Guanajuato, México",
   email: "cesarjaramillormz@gmail.com",
   github: "https://github.com/ngMigthy-astro",
-  linkedin: "https://www.linkedin.com/in/c-jaramillo-dev/",
+  linkedin: "https://www.linkedin.com/in/c-jaramillo-dev",
   twitter: "https://twitter.com/C_jaramz",
   cv: "/cv.pdf",
   bio: `Soy un Full Stack Developer especializado en crear sistemas web robustos y modernos para el sector público. Me apasiona el código limpio, la arquitectura modular y dominar tecnologías como Angular, Astro y Laravel para resolver problemas complejos de manera eficiente.`,

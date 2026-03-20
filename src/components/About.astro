@@ -1,6 +1,6 @@
 ---
 import { personalInfo, aboutStats } from "../data/index";
-import { Download, Code2, MapPin, Mail } from "@lucide/astro";
+import { ExternalLink, Code2, MapPin, Mail } from "@lucide/astro";
 ---
 
 <section id="about" class="relative">
@@ -110,9 +110,9 @@ import { Download, Code2, MapPin, Mail } from "@lucide/astro";
           </div>
         </div>
 
-        <a href={personalInfo.cv} download class="btn-primary w-fit">
-          Descargar CV
-          <Download class="w-4 h-4" />
+        <a href="/cv" target="_blank" rel="noopener noreferrer" class="btn-primary w-fit">
+          Ver CV
+          <ExternalLink class="w-4 h-4" />
         </a>
       </div>
     </div>

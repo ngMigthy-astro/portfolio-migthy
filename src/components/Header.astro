@@ -11,12 +11,18 @@ import { Sun, Moon } from "@lucide/astro";
     class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between"
   >
     <!-- Logo -->
-    <a
-      href="#intro"
-      class="text-lg font-bold font-mono tracking-tight transition-colors duration-200"
-      style="color: var(--color-accent)"
-    >
-      {personalInfo.name.split(" ")[0].toLowerCase()}<span class="opacity-50">.</span>dev
+    <a href="#intro" class="flex items-center gap-2 group">
+      <img
+        src="/migthy-dev.jpg"
+        alt="migthy.dev"
+        class="w-7 h-7 rounded-lg object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-200"
+      />
+      <span
+        class="text-lg font-bold font-mono tracking-tight transition-colors duration-200"
+        style="color: var(--color-accent)"
+      >
+        migthy<span class="opacity-50">.</span>dev
+      </span>
     </a>
 
     <!-- Desktop Nav -->

@@ -10,12 +10,15 @@ const year = new Date().getFullYear();
   <div class="max-w-5xl mx-auto px-6">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <!-- Logo -->
-      <a
-        href="#intro"
-        class="text-base font-bold font-mono"
-        style="color: var(--color-accent)"
-      >
-        {personalInfo.name.split(" ")[0].toLowerCase()}<span class="opacity-50">.</span>dev
+      <a href="#intro" class="flex items-center gap-2 group">
+        <img
+          src="/migthy-dev.jpg"
+          alt="migthy.dev"
+          class="w-8 h-8 rounded-lg object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-200"
+        />
+        <span class="text-base font-bold font-mono" style="color: var(--color-accent)">
+          migthy<span class="opacity-50">.</span>dev
+        </span>
       </a>
 
       <!-- Nav -->
