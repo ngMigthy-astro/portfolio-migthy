@@ -92,7 +92,7 @@ export const projects = [
       "Aplicación web interactiva para generar y personalizar códigos QR con persistencia de temas y descarga en canvas HTML5.",
     tags: ["Astro", "TypeScript", "Tailwind CSS"],
     github: "",
-    demo: "https://qr-finanzas.guanajuato.gob.mx/",
+    demo: "",
     image: "/projects/generador-qr.jpg",
   },
   {
