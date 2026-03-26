@@ -1,6 +1,11 @@
 ---
-import { personalInfo, typingWords } from "../data/index";
 import { ArrowRight, ExternalLink } from "@lucide/astro";
+import { useTranslations, useData, getLang } from "../i18n/utils";
+
+const t = useTranslations(Astro.currentLocale);
+const { personalInfo, typingWords } = useData(Astro.currentLocale);
+const lang = getLang(Astro.currentLocale);
+const cvPath = lang === "en" ? "/en/cv" : "/cv";
 ---
 
 <section
@@ -28,7 +33,7 @@ import { ArrowRight, ExternalLink } from "@lucide/astro";
         style="background-color: var(--color-accent-10); border: 1px solid var(--color-accent-20); color: var(--color-accent-light, #a78bfa)"
       >
         <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-        Disponible para proyectos
+        {t.intro.available}
       </div>
 
       <!-- Main heading -->
@@ -36,7 +41,7 @@ import { ArrowRight, ExternalLink } from "@lucide/astro";
         class="reveal text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6"
         style="animation-delay: 0.1s"
       >
-        Hola, soy<br />
+        {t.intro.greeting}<br />
         <span class="gradient-text">{personalInfo.name}</span>
       </h1>
 
@@ -63,11 +68,11 @@ import { ArrowRight, ExternalLink } from "@lucide/astro";
         style="animation-delay: 0.4s"
       >
         <a href="#contact" class="btn-primary">
-          Contáctame
+          {t.intro.contactMe}
           <ArrowRight class="w-4 h-4" />
         </a>
-        <a href="/cv" target="_blank" rel="noopener noreferrer" class="btn-outline">
-          Ver CV
+        <a href={cvPath} target="_blank" rel="noopener noreferrer" class="btn-outline">
+          {t.intro.viewCV}
           <ExternalLink class="w-4 h-4" />
         </a>
       </div>

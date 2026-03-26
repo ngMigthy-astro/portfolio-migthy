@@ -1,6 +1,13 @@
 ---
-import { navLinks, personalInfo } from "../data/index";
+import { personalInfo } from "../data/index";
 import { Sun, Moon } from "@lucide/astro";
+import { useTranslations, useData, getLang, getAlternatePath } from "../i18n/utils";
+
+const t = useTranslations(Astro.currentLocale);
+const { navLinks } = useData(Astro.currentLocale);
+const lang = getLang(Astro.currentLocale);
+const pathname = new URL(Astro.request.url).pathname;
+const alternatePath = getAlternatePath(pathname, lang);
 ---
 
 <header
@@ -11,7 +18,7 @@ import { Sun, Moon } from "@lucide/astro";
     class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between"
   >
     <!-- Logo -->
-    <a href="#intro" class="flex items-center gap-2 group">
+    <a href={lang === "en" ? "/en" : "/"} class="flex items-center gap-2 group">
       <img
         src="/migthy-dev.jpg"
         alt="migthy.dev"
@@ -38,6 +45,16 @@ import { Sun, Moon } from "@lucide/astro";
 
     <!-- Right controls -->
     <div class="flex items-center gap-3">
+      <!-- Language switcher -->
+      <a
+        href={alternatePath}
+        aria-label={t.lang.switcherLabel}
+        class="w-9 h-9 rounded-xl flex items-center justify-center text-xs font-bold font-mono transition-all duration-200 hover:scale-110"
+        style="background-color: var(--color-surface-2); border: 1px solid var(--color-border); color: var(--color-accent)"
+      >
+        {t.lang.switcher}
+      </a>
+
       <!-- Theme toggle -->
       <button
         id="theme-toggle"

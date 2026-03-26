@@ -1,6 +1,11 @@
 ---
-import { personalInfo, aboutStats } from "../data/index";
-import { ExternalLink, Code2, MapPin, Mail } from "@lucide/astro";
+import { ExternalLink, Code, MapPin, Mail } from "@lucide/astro";
+import { useTranslations, useData, getLang } from "../i18n/utils";
+
+const t = useTranslations(Astro.currentLocale);
+const { personalInfo, aboutStats } = useData(Astro.currentLocale);
+const lang = getLang(Astro.currentLocale);
+const cvPath = lang === "en" ? "/en/cv" : "/cv";
 ---
 
 <section id="about" class="relative">
@@ -8,9 +13,9 @@ import { ExternalLink, Code2, MapPin, Mail } from "@lucide/astro";
     <!-- Section header -->
     <div class="reveal mb-16">
       <p class="text-sm font-mono mb-2" style="color: var(--color-accent)">
-        01. sobre mí
+        {t.about.tag}
       </p>
-      <h2 class="section-title">Un poco sobre mí</h2>
+      <h2 class="section-title">{t.about.title}</h2>
     </div>
 
     <div class="grid md:grid-cols-2 gap-16 items-center">
@@ -27,7 +32,7 @@ import { ExternalLink, Code2, MapPin, Mail } from "@lucide/astro";
               class="w-full h-full flex items-center justify-center"
               style="background: linear-gradient(135deg, rgba(124,58,237,0.15) 0%, rgba(236,72,153,0.1) 100%)"
             >
-              <Code2 class="w-20 h-20" style="color: var(--color-accent)" />
+              <Code class="w-20 h-20" style="color: var(--color-accent)" />
             </div>
           </div>
           <!-- Decorative corner -->
@@ -72,15 +77,11 @@ import { ExternalLink, Code2, MapPin, Mail } from "@lucide/astro";
         </p>
 
         <p class="text-base leading-relaxed" style="color: var(--color-text-muted)">
-          Cuando no estoy programando, me encuentras explorando nuevas tecnologías,
-          contribuyendo a proyectos open source, o aprendiendo sobre arquitectura
-          de software y diseño de sistemas.
+          {t.about.p2}
         </p>
 
         <p class="text-base leading-relaxed" style="color: var(--color-text-muted)">
-          Me apasiona escribir código que no solo funciona, sino que es legible,
-          mantenible y escalable. Creo firmemente que la mejor documentación es
-          el código bien escrito.
+          {t.about.p3}
         </p>
 
         <!-- Info grid -->
@@ -91,14 +92,14 @@ import { ExternalLink, Code2, MapPin, Mail } from "@lucide/astro";
           <div class="flex items-center gap-3">
             <MapPin class="w-5 h-5 shrink-0" style="color: var(--color-accent)" />
             <div>
-              <p class="text-xs" style="color: var(--color-text-muted)">Ubicación</p>
+              <p class="text-xs" style="color: var(--color-text-muted)">{t.about.location}</p>
               <p class="text-sm font-medium">{personalInfo.location}</p>
             </div>
           </div>
           <div class="flex items-center gap-3">
             <Mail class="w-5 h-5 shrink-0" style="color: var(--color-accent)" />
             <div>
-              <p class="text-xs" style="color: var(--color-text-muted)">Email</p>
+              <p class="text-xs" style="color: var(--color-text-muted)">{t.about.email}</p>
               <a
                 href={`mailto:${personalInfo.email}`}
                 class="text-sm font-medium transition-colors duration-200"
@@ -110,8 +111,8 @@ import { ExternalLink, Code2, MapPin, Mail } from "@lucide/astro";
           </div>
         </div>
 
-        <a href="/cv" target="_blank" rel="noopener noreferrer" class="btn-primary w-fit">
-          Ver CV
+        <a href={cvPath} target="_blank" rel="noopener noreferrer" class="btn-primary w-fit">
+          {t.about.viewCV}
           <ExternalLink class="w-4 h-4" />
         </a>
       </div>

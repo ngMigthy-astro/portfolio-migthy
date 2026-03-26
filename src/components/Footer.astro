@@ -1,5 +1,9 @@
 ---
-import { personalInfo, navLinks } from "../data/index";
+import { personalInfo } from "../data/index";
+import { useTranslations, useData } from "../i18n/utils";
+
+const t = useTranslations(Astro.currentLocale);
+const { navLinks } = useData(Astro.currentLocale);
 const year = new Date().getFullYear();
 ---
 
@@ -68,7 +72,7 @@ const year = new Date().getFullYear();
       style="border-color: var(--color-border); color: var(--color-text-muted)"
     >
       <p>
-        © {year} {personalInfo.name}. Construido con
+        © {year} {personalInfo.name}. {t.footer.builtWith}
         <a
           href="https://astro.build"
           target="_blank"

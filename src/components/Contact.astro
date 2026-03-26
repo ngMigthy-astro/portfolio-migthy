@@ -1,6 +1,9 @@
 ---
-import { personalInfo, contactServices } from "../data/index";
 import { ArrowRight, ExternalLink, Send, Check, Mail, Link2 } from "@lucide/astro";
+import { useTranslations, useData } from "../i18n/utils";
+
+const t = useTranslations(Astro.currentLocale);
+const { personalInfo, contactServices } = useData(Astro.currentLocale);
 ---
 
 <section id="contact" class="relative">
@@ -8,12 +11,11 @@ import { ArrowRight, ExternalLink, Send, Check, Mail, Link2 } from "@lucide/astr
     <!-- Section header -->
     <div class="reveal mb-16 text-center">
       <p class="text-sm font-mono mb-2" style="color: var(--color-accent)">
-        05. contacto
+        {t.contact.tag}
       </p>
-      <h2 class="section-title">Hablemos</h2>
+      <h2 class="section-title">{t.contact.title}</h2>
       <p class="section-subtitle max-w-lg mx-auto">
-        ¿Tienes un proyecto en mente? ¿Quieres colaborar? No dudes en
-        escribirme.
+        {t.contact.subtitle}
       </p>
     </div>
 
@@ -21,7 +23,7 @@ import { ArrowRight, ExternalLink, Send, Check, Mail, Link2 } from "@lucide/astr
       <!-- Left: info -->
       <div class="reveal-left space-y-6">
         <div class="card">
-          <h3 class="font-semibold mb-4">¿En qué puedo ayudarte?</h3>
+          <h3 class="font-semibold mb-4">{t.contact.help}</h3>
           <ul class="space-y-3">
             {
               contactServices.map((item) => (
@@ -75,7 +77,7 @@ import { ArrowRight, ExternalLink, Send, Check, Mail, Link2 } from "@lucide/astr
             <div>
               <p class="text-xs mb-0.5" style="color: var(--color-text-muted)">LinkedIn</p>
               <p class="text-sm font-medium" style="color: var(--color-accent)">
-                Conectar en LinkedIn
+                {t.contact.connectLinkedIn}
               </p>
             </div>
             <ExternalLink class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" style="color: var(--color-text-muted)" />
@@ -94,21 +96,21 @@ import { ArrowRight, ExternalLink, Send, Check, Mail, Link2 } from "@lucide/astr
               for="name"
               class="block text-sm font-medium mb-2"
             >
-              Nombre
+              {t.contact.formName}
             </label>
             <input
               type="text"
               id="name"
               name="name"
               required
-              placeholder="Tu nombre"
+              placeholder={t.contact.formNamePlaceholder}
               class="form-input w-full"
             />
           </div>
 
           <div>
             <label for="email" class="block text-sm font-medium mb-2">
-              Email
+              {t.contact.formEmail}
             </label>
             <input
               type="email"
@@ -122,41 +124,41 @@ import { ArrowRight, ExternalLink, Send, Check, Mail, Link2 } from "@lucide/astr
 
           <div>
             <label for="subject" class="block text-sm font-medium mb-2">
-              Asunto
+              {t.contact.formSubject}
             </label>
             <input
               type="text"
               id="subject"
               name="subject"
-              placeholder="¿En qué puedo ayudarte?"
+              placeholder={t.contact.formSubjectPlaceholder}
               class="form-input w-full"
             />
           </div>
 
           <div>
             <label for="message" class="block text-sm font-medium mb-2">
-              Mensaje
+              {t.contact.formMessage}
             </label>
             <textarea
               id="message"
               name="message"
               rows="4"
               required
-              placeholder="Cuéntame sobre tu proyecto..."
+              placeholder={t.contact.formMessagePlaceholder}
               class="form-input w-full resize-none"
             ></textarea>
           </div>
 
           <button type="submit" id="submit-btn" class="btn-primary w-full justify-center">
             <span id="btn-default" class="flex items-center gap-2">
-              Enviar mensaje
+              {t.contact.formSend}
               <Send class="w-4 h-4" />
             </span>
             <span id="btn-loading" class="hidden items-center gap-2">
               <svg class="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 12a9 9 0 1 1-6.219-8.56" stroke-linecap="round"/>
               </svg>
-              Enviando...
+              {t.contact.formSending}
             </span>
           </button>
         </form>
@@ -170,6 +172,11 @@ import { ArrowRight, ExternalLink, Send, Check, Mail, Link2 } from "@lucide/astr
   id="toast"
   role="alert"
   aria-live="polite"
+  data-success-title={t.contact.toastSuccessTitle}
+  data-success-msg={t.contact.toastSuccessMsg}
+  data-error-title={t.contact.toastErrorTitle}
+  data-error-msg={t.contact.toastErrorMsg}
+  data-close-label={t.contact.toastClose}
   class="fixed bottom-6 right-6 z-9999 flex items-start gap-3 px-4 py-3.5 rounded-2xl shadow-2xl max-w-xs w-[calc(100vw-3rem)] sm:w-auto pointer-events-none opacity-0 translate-y-4"
   style="background-color: var(--color-surface); border: 1px solid var(--color-border); transition: opacity 0.3s ease, transform 0.3s ease;"
 >
@@ -228,16 +235,21 @@ import { ArrowRight, ExternalLink, Send, Check, Mail, Link2 } from "@lucide/astr
   function showToast(type: "success" | "error") {
     if (!toast || !toastIcon || !toastTitle || !toastMsg) return;
 
+    const successTitle = toast.dataset.successTitle ?? "Message sent!";
+    const successMsg = toast.dataset.successMsg ?? "";
+    const errorTitle = toast.dataset.errorTitle ?? "Failed to send";
+    const errorMsg = toast.dataset.errorMsg ?? "";
+
     if (type === "success") {
       toastIcon.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:#4ade80"><polyline points="20 6 9 17 4 12"/></svg>`;
       toastIcon.style.backgroundColor = "rgba(74,222,128,0.12)";
-      toastTitle.textContent = "¡Mensaje enviado!";
-      toastMsg.textContent = "Gracias por escribirme, te responderé pronto.";
+      toastTitle.textContent = successTitle;
+      toastMsg.textContent = successMsg;
     } else {
       toastIcon.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:#f87171"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
       toastIcon.style.backgroundColor = "rgba(248,113,113,0.12)";
-      toastTitle.textContent = "Error al enviar";
-      toastMsg.textContent = "Algo falló. Inténtalo de nuevo o contáctame por email.";
+      toastTitle.textContent = errorTitle;
+      toastMsg.textContent = errorMsg;
     }
 
     toast.style.opacity = "1";

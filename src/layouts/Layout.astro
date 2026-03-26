@@ -1,6 +1,8 @@
 ---
 import WAButton from "@/components/WAButton.astro";
 import "../styles/global.css";
+import { siteUrl, ogImage, author, jsonLd } from "../data/seo.ts";
+import { getLang, getAlternatePath } from "../i18n/utils";
 
 interface Props {
   title?: string;
@@ -12,43 +14,36 @@ const {
   description = "Portfolio de Cesar Alejandro Jaramillo Ramirez, Full Stack Developer especializado en Angular, Astro y Laravel. Construyo sistemas web modernos, robustos y escalables.",
 } = Astro.props;
 
-const siteUrl = "https://ngmigthy.netlify.app";
-const ogImage = `${siteUrl}/og-image.jpg`;
-const author = "Cesar Alejandro Jaramillo Ramirez";
-
-const jsonLd = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: author,
-  url: siteUrl,
-  jobTitle: "Full Stack Developer",
-  worksFor: { "@type": "Organization", name: "Freelance" },
-  address: { "@type": "PostalAddress", addressLocality: "Irapuato", addressRegion: "Guanajuato", addressCountry: "MX" },
-  email: "cesarjaramillormz@gmail.com",
-  sameAs: [
-    "https://github.com/ngMigthy-astro",
-    "https://www.linkedin.com/in/cesar-jaramillo/",
-    "https://twitter.com/C_jaramz",
-  ],
-  knowsAbout: ["Angular", "Astro", "Laravel", "TypeScript", "Tailwind CSS", "PHP", "MySQL", "Firebase"],
-});
+const lang = getLang(Astro.currentLocale);
+const pathname = new URL(Astro.request.url).pathname;
+const alternatePath = getAlternatePath(pathname, lang);
+const alternateLang = lang === "en" ? "es" : "en";
+const ogLocale = lang === "en" ? "en_US" : "es_MX";
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO primario -->
+    <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={author} />
-    <meta name="keywords" content="Full Stack Developer, Angular, Astro, Laravel, TypeScript, Tailwind CSS, PHP, MySQL, Firebase, portfolio, desarrollador web, Guanajuato, México" />
+    <meta
+      name="keywords"
+      content="Full Stack Developer, Angular, Astro, Laravel, TypeScript, Tailwind CSS, PHP, MySQL, Firebase, portfolio, web developer, Guanajuato, México"
+    />
     <link rel="canonical" href={siteUrl} />
     <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <!-- Hreflang alternates for SEO -->
+    <link rel="alternate" hreflang="es" href={`${siteUrl}${lang === "en" ? alternatePath : pathname}`} />
+    <link rel="alternate" hreflang="en" href={`${siteUrl}${lang === "es" ? alternatePath : pathname}`} />
+    <link rel="alternate" hreflang="x-default" href={siteUrl} />
+
+    <!-- Open Graph  -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={siteUrl} />
     <meta property="og:title" content={title} />
@@ -57,7 +52,7 @@ const jsonLd = JSON.stringify({
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={`Portfolio de ${author}`} />
-    <meta property="og:locale" content="es_MX" />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:site_name" content="Cesar Jaramillo — Portfolio" />
 
     <!-- Twitter Card -->
@@ -76,11 +71,11 @@ const jsonLd = JSON.stringify({
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json" set:html={jsonLd} />
 
-    <!-- Theme initialization: evita el flash -->
+    <!-- Theme initialization -->
     <script is:inline>
       const saved = localStorage.getItem("theme");
       const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
+        "(prefers-color-scheme: dark)",
       ).matches;
       if (saved === "dark" || (!saved && prefersDark)) {
         document.documentElement.classList.add("dark");
@@ -91,60 +86,9 @@ const jsonLd = JSON.stringify({
     <slot />
 
     <!-- WhatsApp floating button -->
-   <WAButton/>
+    <WAButton />
 
-    
-
-    <!-- Scroll reveal & active nav script -->
-    <script>
-      // ── Scroll Reveal ──────────────────────────────────────────────
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-
-              // Animate skill bars when visible
-              const bars = entry.target.querySelectorAll(
-                ".skill-bar-fill[data-level]"
-              );
-              bars.forEach((bar) => {
-                const el = bar as HTMLElement;
-                el.style.width = el.dataset.level + "%";
-              });
-
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.12 }
-      );
-
-      document.querySelectorAll(".reveal, .reveal-left").forEach((el) => {
-        observer.observe(el);
-      });
-
-      // ── Active Nav Link on Scroll ──────────────────────────────────
-      const sections = document.querySelectorAll("section[id]");
-      const navLinks = document.querySelectorAll(".nav-link[href^='#']");
-
-      const navObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              navLinks.forEach((link) => {
-                link.classList.toggle(
-                  "active",
-                  link.getAttribute("href") === "#" + entry.target.id
-                );
-              });
-            }
-          });
-        },
-        { rootMargin: "-40% 0px -55% 0px" }
-      );
-
-      sections.forEach((s) => navObserver.observe(s));
-    </script>
+    <!-- Scroll reveal -->
+    <script src="../scripts/scroll.ts"></script>
   </body>
 </html>

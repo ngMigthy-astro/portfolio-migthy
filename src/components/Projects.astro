@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import { projects } from "../data/index";
 import { ExternalLink } from "@lucide/astro";
+import { useTranslations, useData } from "../i18n/utils";
 
 import generadorQr from "../assets/projects/generador-qr.jpg";
 import holidayinnDashboard from "../assets/projects/holidayinn-dashboard.jpg";
@@ -10,6 +10,9 @@ import portalFinanzas from "../assets/projects/portal-finanzas.jpg";
 import simpsonsApi from "../assets/projects/simpsons-api.jpg";
 
 import type { ImageMetadata } from "astro";
+
+const t = useTranslations(Astro.currentLocale);
+const { projects } = useData(Astro.currentLocale);
 
 const imageMap: Record<string, ImageMetadata> = {
   "/projects/generador-qr.jpg": generadorQr,
@@ -25,11 +28,11 @@ const imageMap: Record<string, ImageMetadata> = {
     <!-- Section header -->
     <div class="reveal mb-16">
       <p class="text-sm font-mono mb-2" style="color: var(--color-accent)">
-        03. proyectos
+        {t.projects.tag}
       </p>
-      <h2 class="section-title">Lo que he construido</h2>
+      <h2 class="section-title">{t.projects.title}</h2>
       <p class="section-subtitle">
-        Una selección de proyectos que muestran mis habilidades y pasión.
+        {t.projects.subtitle}
       </p>
     </div>
 

@@ -1,23 +1,23 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { useTranslations, useData, getLang } from "../i18n/utils";
+// English CV — delegates all rendering to cv.astro via shared components.
+// Astro.currentLocale will be "en" here, so all i18n works automatically.
+import Layout from "../../layouts/Layout.astro";
+import { useTranslations, useData, getLang } from "../../i18n/utils";
 
 const t = useTranslations(Astro.currentLocale);
 const { personalInfo, experiences, projects, skills } = useData(Astro.currentLocale);
 const lang = getLang(Astro.currentLocale);
-const portfolioPath = lang === "en" ? "/en" : "/";
+const portfolioPath = "/en";
 ---
 
 <Layout
-  title={lang === "en" ? "CV — Cesar Jaramillo | Full Stack Developer" : "CV — Cesar Jaramillo | Full Stack Developer"}
-  description={lang === "en"
-    ? "Curriculum Vitae of Cesar Alejandro Jaramillo Ramirez, Full Stack Developer specialized in Angular, Astro and Laravel."
-    : "Currículum Vitae de Cesar Alejandro Jaramillo Ramirez, Full Stack Developer especializado en Angular, Astro y Laravel."}
+  title="CV — Cesar Jaramillo | Full Stack Developer"
+  description="Curriculum Vitae of Cesar Alejandro Jaramillo Ramirez, Full Stack Developer specialized in Angular, Astro and Laravel."
 >
   <main class="min-h-screen py-20 px-4" style="background-color: var(--color-bg)">
     <div class="max-w-4xl mx-auto">
 
-      <!-- Link de regreso al portfolio -->
+      <!-- Back link -->
       <a
         href={portfolioPath}
         class="inline-flex items-center gap-2 text-sm mb-6 transition-colors duration-200 hover:text-purple-400 print:hidden"
@@ -29,11 +29,10 @@ const portfolioPath = lang === "en" ? "/en" : "/";
 
       <!-- Header -->
       <header class="rounded-2xl p-8 mb-6 relative overflow-hidden" style="background-color: var(--color-surface); border: 1px solid var(--color-border)">
-        <!-- Glow de fondo -->
         <div class="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 blur-3xl pointer-events-none" style="background: radial-gradient(circle, #7c3aed 0%, transparent 70%)"></div>
 
         <div class="relative flex flex-col sm:flex-row sm:items-center gap-6">
-          <!-- Foto + Logo -->
+          <!-- Photo + Logo -->
           <div class="shrink-0 flex flex-col items-center gap-3">
             <div class="relative w-24 h-24 rounded-2xl overflow-hidden" style="border: 2px solid var(--color-accent)">
               <img src="/hero.jpg" alt={personalInfo.name} class="w-full h-full object-cover object-top" />
@@ -50,7 +49,7 @@ const portfolioPath = lang === "en" ? "/en" : "/";
             <h1 class="text-3xl font-bold mb-1" style="color: var(--color-text)">{personalInfo.name}</h1>
             <p class="text-base font-medium mb-4" style="color: var(--color-accent-light)">{personalInfo.role}</p>
 
-            <!-- Contacto -->
+            <!-- Contact -->
             <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm" style="color: var(--color-text-muted)">
               <span class="flex items-center gap-1.5">
                 <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -75,7 +74,7 @@ const portfolioPath = lang === "en" ? "/en" : "/";
             </div>
           </div>
 
-          <!-- Botones descarga e imprimir -->
+          <!-- Download + Print buttons -->
           <div class="shrink-0 hidden sm:flex flex-col items-end gap-2 print:hidden">
             <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200" style="background-color: var(--color-accent); color: white">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
@@ -100,10 +99,10 @@ const portfolioPath = lang === "en" ? "/en" : "/";
 
       <div class="grid md:grid-cols-3 gap-6">
 
-        <!-- Columna principal (izquierda 2/3) -->
+        <!-- Main column (left 2/3) -->
         <div class="md:col-span-2 flex flex-col gap-6">
 
-          <!-- Experiencia -->
+          <!-- Experience -->
           <section class="rounded-2xl p-6" style="background-color: var(--color-surface); border: 1px solid var(--color-border)">
             <h2 class="text-xs font-mono uppercase tracking-widest mb-5 flex items-center gap-2" style="color: var(--color-accent)">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
@@ -131,7 +130,7 @@ const portfolioPath = lang === "en" ? "/en" : "/";
             </div>
           </section>
 
-          <!-- Proyectos -->
+          <!-- Projects -->
           <section class="rounded-2xl p-6" style="background-color: var(--color-surface); border: 1px solid var(--color-border)">
             <h2 class="text-xs font-mono uppercase tracking-widest mb-5 flex items-center gap-2" style="color: var(--color-accent)">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
@@ -161,7 +160,7 @@ const portfolioPath = lang === "en" ? "/en" : "/";
 
         </div>
 
-        <!-- Columna lateral (derecha 1/3) -->
+        <!-- Sidebar (right 1/3) -->
         <div class="flex flex-col gap-6">
 
           <!-- Stats -->
@@ -169,10 +168,10 @@ const portfolioPath = lang === "en" ? "/en" : "/";
             <h2 class="text-xs font-mono uppercase tracking-widest mb-4" style="color: var(--color-accent)">{t.cv.sectionStats}</h2>
             <div class="grid grid-cols-2 gap-3">
               {[
-                { value: "2+", label: "Años exp." },
-                { value: "10+", label: "Proyectos" },
-                { value: "200+", label: "Usuarios" },
-                { value: "5+", label: "Tecnologías" },
+                { value: "2+", label: lang === "en" ? "Years exp." : "Años exp." },
+                { value: "10+", label: lang === "en" ? "Projects" : "Proyectos" },
+                { value: "200+", label: lang === "en" ? "Users" : "Usuarios" },
+                { value: "5+", label: lang === "en" ? "Technologies" : "Tecnologías" },
               ].map(s => (
                 <div class="rounded-xl p-3 text-center" style="background-color: var(--color-surface-2)">
                   <p class="text-xl font-bold" style="color: var(--color-accent-light)">{s.value}</p>
@@ -182,7 +181,7 @@ const portfolioPath = lang === "en" ? "/en" : "/";
             </div>
           </section>
 
-          <!-- Habilidades -->
+          <!-- Skills -->
           {skills.map(group => (
             <section class="rounded-2xl p-6" style="background-color: var(--color-surface); border: 1px solid var(--color-border)">
               <h2 class="text-xs font-mono uppercase tracking-widest mb-4" style="color: var(--color-accent)">{group.category}</h2>
@@ -202,7 +201,7 @@ const portfolioPath = lang === "en" ? "/en" : "/";
             </section>
           ))}
 
-          <!-- Botón imprimir mobile -->
+          <!-- Mobile buttons -->
           <div class="flex flex-col gap-2 sm:hidden print:hidden">
             <button onclick="window.print()" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200" style="background-color: var(--color-accent); color: white">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
@@ -221,7 +220,7 @@ const portfolioPath = lang === "en" ? "/en" : "/";
         </div>
       </div>
 
-      <!-- Footer del CV -->
+      <!-- CV Footer -->
       <p class="text-center text-xs mt-6 print:hidden" style="color: var(--color-text-muted)">
         {t.cv.lastUpdated} · <a href="https://ngmigthy.netlify.app" class="hover:text-purple-400 transition-colors" style="color: var(--color-accent-light)">ngmigthy.netlify.app</a>
       </p>

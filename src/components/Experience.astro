@@ -1,6 +1,9 @@
 ---
-import { experiences } from "../data/index";
 import { Laptop, Rocket, Settings, MapPin, ChevronRight } from "@lucide/astro";
+import { useTranslations, useData } from "../i18n/utils";
+
+const t = useTranslations(Astro.currentLocale);
+const { experiences } = useData(Astro.currentLocale);
 ---
 
 <section id="experience" class="relative">
@@ -14,11 +17,11 @@ import { Laptop, Rocket, Settings, MapPin, ChevronRight } from "@lucide/astro";
     <!-- Section header -->
     <div class="reveal mb-16">
       <p class="text-sm font-mono mb-2" style="color: var(--color-accent)">
-        02. experiencia
+        {t.experience.tag}
       </p>
-      <h2 class="section-title">Trayectoria profesional</h2>
+      <h2 class="section-title">{t.experience.title}</h2>
       <p class="section-subtitle">
-        Mi recorrido en el mundo del desarrollo de software.
+        {t.experience.subtitle}
       </p>
     </div>
 
