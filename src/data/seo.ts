@@ -1,5 +1,5 @@
 export const siteUrl = "https://ngmigthy.netlify.app";
-export const ogImage = `${siteUrl}/og-image.jpg`;
+export const ogImage = `${siteUrl}/images/og-image.jpg`;
 export const author = "Cesar Alejandro Jaramillo Ramirez";
 
 export const jsonLd = JSON.stringify({

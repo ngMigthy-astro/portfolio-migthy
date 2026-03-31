@@ -3,236 +3,587 @@ import Layout from "../layouts/Layout.astro";
 import { useTranslations, useData, getLang } from "../i18n/utils";
 
 const t = useTranslations(Astro.currentLocale);
-const { personalInfo, experiences, projects, skills } = useData(Astro.currentLocale);
+const { personalInfo, experiences, projects, skills } = useData(
+  Astro.currentLocale,
+);
 const lang = getLang(Astro.currentLocale);
 const portfolioPath = lang === "en" ? "/en" : "/";
 ---
 
 <Layout
-  title={lang === "en" ? "CV — Cesar Jaramillo | Full Stack Developer" : "CV — Cesar Jaramillo | Full Stack Developer"}
+  title={lang === "en"
+    ? "CV — Cesar Jaramillo | Full Stack Developer"
+    : "CV — Cesar Jaramillo | Full Stack Developer"}
   description={lang === "en"
     ? "Curriculum Vitae of Cesar Alejandro Jaramillo Ramirez, Full Stack Developer specialized in Angular, Astro and Laravel."
     : "Currículum Vitae de Cesar Alejandro Jaramillo Ramirez, Full Stack Developer especializado en Angular, Astro y Laravel."}
 >
-  <main class="min-h-screen py-20 px-4" style="background-color: var(--color-bg)">
+  <main
+    class="min-h-screen py-20 px-4"
+    style="background-color: var(--color-bg)"
+  >
     <div class="max-w-4xl mx-auto">
-
       <!-- Link de regreso al portfolio -->
       <a
         href={portfolioPath}
         class="inline-flex items-center gap-2 text-sm mb-6 transition-colors duration-200 hover:text-purple-400 print:hidden"
         style="color: var(--color-text-muted)"
       >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          ><polyline points="15 18 9 12 15 6"></polyline></svg
+        >
         {t.cv.backToPortfolio}
       </a>
 
       <!-- Header -->
-      <header class="rounded-2xl p-8 mb-6 relative overflow-hidden" style="background-color: var(--color-surface); border: 1px solid var(--color-border)">
+      <header
+        class="rounded-2xl p-8 mb-6 relative overflow-hidden"
+        style="background-color: var(--color-surface); border: 1px solid var(--color-border)"
+      >
         <!-- Glow de fondo -->
-        <div class="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 blur-3xl pointer-events-none" style="background: radial-gradient(circle, #7c3aed 0%, transparent 70%)"></div>
+        <div
+          class="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 blur-3xl pointer-events-none"
+          style="background: radial-gradient(circle, #7c3aed 0%, transparent 70%)"
+        >
+        </div>
 
         <div class="relative flex flex-col sm:flex-row sm:items-center gap-6">
           <!-- Foto + Logo -->
           <div class="shrink-0 flex flex-col items-center gap-3">
-            <div class="relative w-24 h-24 rounded-2xl overflow-hidden" style="border: 2px solid var(--color-accent)">
-              <img src="/hero.jpg" alt={personalInfo.name} class="w-full h-full object-cover object-top" />
+            <div
+              class="relative w-24 h-24 rounded-2xl overflow-hidden"
+              style="border: 2px solid var(--color-accent)"
+            >
+              <img
+                src="/images/hero.jpg"
+                alt={personalInfo.name}
+                class="w-full h-full object-cover object-top"
+              />
             </div>
-            <img src="/migthy-dev.jpg" alt="migthy.dev" class="w-10 h-10 rounded-xl object-cover opacity-90" />
+            <img
+              src="/images/migthy-dev.jpg"
+              alt="migthy.dev"
+              class="w-10 h-10 rounded-xl object-cover opacity-90"
+            />
           </div>
 
           <!-- Info -->
           <div class="flex-1">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-3" style="background-color: var(--color-accent-10); border: 1px solid var(--color-accent-20); color: var(--color-accent-light)">
-              <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-3"
+              style="background-color: var(--color-accent-10); border: 1px solid var(--color-accent-20); color: var(--color-accent-light)"
+            >
+              <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"
+              ></span>
               {t.cv.available}
             </div>
-            <h1 class="text-3xl font-bold mb-1" style="color: var(--color-text)">{personalInfo.name}</h1>
-            <p class="text-base font-medium mb-4" style="color: var(--color-accent-light)">{personalInfo.role}</p>
+            <h1
+              class="text-3xl font-bold mb-1"
+              style="color: var(--color-text)"
+            >
+              {personalInfo.name}
+            </h1>
+            <p
+              class="text-base font-medium mb-4"
+              style="color: var(--color-accent-light)"
+            >
+              {personalInfo.role}
+            </p>
 
             <!-- Contacto -->
-            <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm" style="color: var(--color-text-muted)">
+            <div
+              class="flex flex-wrap gap-x-6 gap-y-2 text-sm"
+              style="color: var(--color-text-muted)"
+            >
               <span class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <svg
+                  class="w-3.5 h-3.5 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  ><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                  ></path><circle cx="12" cy="10" r="3"></circle></svg
+                >
                 {personalInfo.location}
               </span>
-              <a href={`mailto:${personalInfo.email}`} class="flex items-center gap-1.5 hover:text-purple-400 transition-colors">
-                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+              <a
+                href={`mailto:${personalInfo.email}`}
+                class="flex items-center gap-1.5 hover:text-purple-400 transition-colors"
+              >
+                <svg
+                  class="w-3.5 h-3.5 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  ><path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  ></path><polyline points="22,6 12,12 2,6"></polyline></svg
+                >
                 {personalInfo.email}
               </a>
-              <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 hover:text-purple-400 transition-colors">
-                <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              <a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-1.5 hover:text-purple-400 transition-colors"
+              >
+                <svg
+                  class="w-3.5 h-3.5 shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  ><path
+                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
+                  ></path></svg
+                >
                 github.com/ngMigthy-astro
               </a>
-              <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 hover:text-purple-400 transition-colors">
-                <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-1.5 hover:text-purple-400 transition-colors"
+              >
+                <svg
+                  class="w-3.5 h-3.5 shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  ><path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  ></path></svg
+                >
                 linkedin.com/in/c-jaramillo-dev
               </a>
-              <a href="https://ngmigthy.netlify.app" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 hover:text-purple-400 transition-colors">
-                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <a
+                href="https://ngmigthy.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-1.5 hover:text-purple-400 transition-colors"
+              >
+                <svg
+                  class="w-3.5 h-3.5 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  ><circle cx="12" cy="12" r="10"></circle><line
+                    x1="2"
+                    y1="12"
+                    x2="22"
+                    y2="12"></line><path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  ></path></svg
+                >
                 ngmigthy.netlify.app
               </a>
             </div>
           </div>
 
           <!-- Botones descarga e imprimir -->
-          <div class="shrink-0 hidden sm:flex flex-col items-end gap-2 print:hidden">
-            <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200" style="background-color: var(--color-accent); color: white">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          <div
+            class="shrink-0 hidden sm:flex flex-col items-end gap-2 print:hidden"
+          >
+            <button
+              onclick="window.print()"
+              class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200"
+              style="background-color: var(--color-accent); color: white"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                ><polyline points="6 9 6 2 18 2 18 9"></polyline><path
+                  d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+                ></path><rect x="6" y="14" width="12" height="8"></rect></svg
+              >
               {t.cv.printPDF}
             </button>
-            <a href="/cv-es.pdf" download class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200" style="background-color: var(--color-surface-2); border: 1px solid var(--color-border); color: var(--color-text)">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <a
+              href="/cv-es.pdf"
+              download
+              class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200"
+              style="background-color: var(--color-surface-2); border: 1px solid var(--color-border); color: var(--color-text)"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                ><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                ></path><polyline points="7 10 12 15 17 10"></polyline><line
+                  x1="12"
+                  y1="15"
+                  x2="12"
+                  y2="3"></line></svg
+              >
               {t.cv.downloadES}
             </a>
-            <a href="/cv-en.pdf" download class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200" style="background-color: var(--color-surface-2); border: 1px solid var(--color-border); color: var(--color-text)">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <a
+              href="/cv-en.pdf"
+              download
+              class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200"
+              style="background-color: var(--color-surface-2); border: 1px solid var(--color-border); color: var(--color-text)"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                ><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                ></path><polyline points="7 10 12 15 17 10"></polyline><line
+                  x1="12"
+                  y1="15"
+                  x2="12"
+                  y2="3"></line></svg
+              >
               {t.cv.downloadEN}
             </a>
           </div>
         </div>
 
         <!-- Bio -->
-        <div class="mt-6 pt-6" style="border-top: 1px solid var(--color-border)">
-          <p class="text-sm leading-relaxed" style="color: var(--color-text-muted)">{personalInfo.bio}</p>
+        <div
+          class="mt-6 pt-6"
+          style="border-top: 1px solid var(--color-border)"
+        >
+          <p
+            class="text-sm leading-relaxed"
+            style="color: var(--color-text-muted)"
+          >
+            {personalInfo.bio}
+          </p>
         </div>
       </header>
 
       <div class="grid md:grid-cols-3 gap-6">
-
         <!-- Columna principal (izquierda 2/3) -->
         <div class="md:col-span-2 flex flex-col gap-6">
-
           <!-- Experiencia -->
-          <section class="rounded-2xl p-6" style="background-color: var(--color-surface); border: 1px solid var(--color-border)">
-            <h2 class="text-xs font-mono uppercase tracking-widest mb-5 flex items-center gap-2" style="color: var(--color-accent)">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          <section
+            class="rounded-2xl p-6"
+            style="background-color: var(--color-surface); border: 1px solid var(--color-border)"
+          >
+            <h2
+              class="text-xs font-mono uppercase tracking-widest mb-5 flex items-center gap-2"
+              style="color: var(--color-accent)"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                ><rect x="2" y="7" width="20" height="14" rx="2"></rect><path
+                  d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg
+              >
               {t.cv.sectionExperience}
             </h2>
             <div class="flex flex-col gap-6">
-              {experiences.map((exp, i) => (
-                <div class="relative pl-4" style={i < experiences.length - 1 ? "border-left: 2px solid var(--color-border)" : ""}>
-                  <div class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full" style="background-color: var(--color-accent)"></div>
-                  <div class="flex flex-wrap items-start justify-between gap-1 mb-1">
-                    <h3 class="font-semibold text-sm" style="color: var(--color-text)">{exp.title}</h3>
-                    <span class="text-xs font-mono px-2 py-0.5 rounded-full" style="background-color: var(--color-accent-10); color: var(--color-accent-light)">{exp.period}</span>
+              {
+                experiences.map((exp, i) => (
+                  <div
+                    class="relative pl-4"
+                    style={
+                      i < experiences.length - 1
+                        ? "border-left: 2px solid var(--color-border)"
+                        : ""
+                    }
+                  >
+                    <div
+                      class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full"
+                      style="background-color: var(--color-accent)"
+                    />
+                    <div class="flex flex-wrap items-start justify-between gap-1 mb-1">
+                      <h3
+                        class="font-semibold text-sm"
+                        style="color: var(--color-text)"
+                      >
+                        {exp.title}
+                      </h3>
+                      <span
+                        class="text-xs font-mono px-2 py-0.5 rounded-full"
+                        style="background-color: var(--color-accent-10); color: var(--color-accent-light)"
+                      >
+                        {exp.period}
+                      </span>
+                    </div>
+                    <p
+                      class="text-xs mb-2"
+                      style="color: var(--color-accent-light)"
+                    >
+                      {exp.company} · {exp.location}
+                    </p>
+                    <ul class="flex flex-col gap-1">
+                      {exp.description.map((d) => (
+                        <li
+                          class="text-xs leading-relaxed flex gap-2"
+                          style="color: var(--color-text-muted)"
+                        >
+                          <span
+                            class="mt-1.5 w-1 h-1 rounded-full shrink-0"
+                            style="background-color: var(--color-accent)"
+                          />
+                          {d}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <p class="text-xs mb-2" style="color: var(--color-accent-light)">{exp.company} · {exp.location}</p>
-                  <ul class="flex flex-col gap-1">
-                    {exp.description.map(d => (
-                      <li class="text-xs leading-relaxed flex gap-2" style="color: var(--color-text-muted)">
-                        <span class="mt-1.5 w-1 h-1 rounded-full shrink-0" style="background-color: var(--color-accent)"></span>
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                ))
+              }
             </div>
           </section>
 
           <!-- Proyectos -->
-          <section class="rounded-2xl p-6" style="background-color: var(--color-surface); border: 1px solid var(--color-border)">
-            <h2 class="text-xs font-mono uppercase tracking-widest mb-5 flex items-center gap-2" style="color: var(--color-accent)">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <section
+            class="rounded-2xl p-6"
+            style="background-color: var(--color-surface); border: 1px solid var(--color-border)"
+          >
+            <h2
+              class="text-xs font-mono uppercase tracking-widest mb-5 flex items-center gap-2"
+              style="color: var(--color-accent)"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                ><polyline points="16 18 22 12 16 6"></polyline><polyline
+                  points="8 6 2 12 8 18"></polyline></svg
+              >
               {t.cv.sectionProjects}
             </h2>
             <div class="flex flex-col gap-3">
-              {projects.map(p => (
-                <div class="flex flex-wrap items-start justify-between gap-2 p-3 rounded-xl" style="background-color: var(--color-surface-2)">
-                  <div class="flex-1 min-w-0">
-                    <div class="flex items-center gap-2 mb-1">
-                      <h3 class="text-sm font-medium" style="color: var(--color-text)">{p.title}</h3>
-                      {p.demo && (
-                        <a href={p.demo} target="_blank" rel="noopener noreferrer" class="text-xs hover:underline" style="color: var(--color-accent-light)">{t.cv.demoLabel}</a>
-                      )}
-                    </div>
-                    <p class="text-xs leading-relaxed mb-2" style="color: var(--color-text-muted)">{p.description}</p>
-                    <div class="flex flex-wrap gap-1">
-                      {p.tags.map(tag => (
-                        <span class="text-xs px-2 py-0.5 rounded-full font-mono" style="background-color: var(--color-accent-10); color: var(--color-accent-light); border: 1px solid var(--color-accent-20)">{tag}</span>
-                      ))}
+              {
+                projects.map((p) => (
+                  <div
+                    class="flex flex-wrap items-start justify-between gap-2 p-3 rounded-xl"
+                    style="background-color: var(--color-surface-2)"
+                  >
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center gap-2 mb-1">
+                        <h3
+                          class="text-sm font-medium"
+                          style="color: var(--color-text)"
+                        >
+                          {p.title}
+                        </h3>
+                        {p.demo && (
+                          <a
+                            href={p.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-xs hover:underline"
+                            style="color: var(--color-accent-light)"
+                          >
+                            {t.cv.demoLabel}
+                          </a>
+                        )}
+                      </div>
+                      <p
+                        class="text-xs leading-relaxed mb-2"
+                        style="color: var(--color-text-muted)"
+                      >
+                        {p.description}
+                      </p>
+                      <div class="flex flex-wrap gap-1">
+                        {p.tags.map((tag) => (
+                          <span
+                            class="text-xs px-2 py-0.5 rounded-full font-mono"
+                            style="background-color: var(--color-accent-10); color: var(--color-accent-light); border: 1px solid var(--color-accent-20)"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))
+              }
             </div>
           </section>
-
         </div>
 
         <!-- Columna lateral (derecha 1/3) -->
         <div class="flex flex-col gap-6">
-
           <!-- Stats -->
-          <section class="rounded-2xl p-6" style="background-color: var(--color-surface); border: 1px solid var(--color-border)">
-            <h2 class="text-xs font-mono uppercase tracking-widest mb-4" style="color: var(--color-accent)">{t.cv.sectionStats}</h2>
+          <section
+            class="rounded-2xl p-6"
+            style="background-color: var(--color-surface); border: 1px solid var(--color-border)"
+          >
+            <h2
+              class="text-xs font-mono uppercase tracking-widest mb-4"
+              style="color: var(--color-accent)"
+            >
+              {t.cv.sectionStats}
+            </h2>
             <div class="grid grid-cols-2 gap-3">
-              {[
-                { value: "2+", label: "Años exp." },
-                { value: "10+", label: "Proyectos" },
-                { value: "200+", label: "Usuarios" },
-                { value: "5+", label: "Tecnologías" },
-              ].map(s => (
-                <div class="rounded-xl p-3 text-center" style="background-color: var(--color-surface-2)">
-                  <p class="text-xl font-bold" style="color: var(--color-accent-light)">{s.value}</p>
-                  <p class="text-xs mt-0.5" style="color: var(--color-text-muted)">{s.label}</p>
-                </div>
-              ))}
+              {
+                [
+                  { value: "2+", label: "Años exp." },
+                  { value: "10+", label: "Proyectos" },
+                  { value: "200+", label: "Usuarios" },
+                  { value: "5+", label: "Tecnologías" },
+                ].map((s) => (
+                  <div
+                    class="rounded-xl p-3 text-center"
+                    style="background-color: var(--color-surface-2)"
+                  >
+                    <p
+                      class="text-xl font-bold"
+                      style="color: var(--color-accent-light)"
+                    >
+                      {s.value}
+                    </p>
+                    <p
+                      class="text-xs mt-0.5"
+                      style="color: var(--color-text-muted)"
+                    >
+                      {s.label}
+                    </p>
+                  </div>
+                ))
+              }
             </div>
           </section>
 
           <!-- Habilidades -->
-          {skills.map(group => (
-            <section class="rounded-2xl p-6" style="background-color: var(--color-surface); border: 1px solid var(--color-border)">
-              <h2 class="text-xs font-mono uppercase tracking-widest mb-4" style="color: var(--color-accent)">{group.category}</h2>
-              <div class="flex flex-col gap-3">
-                {group.items.map(skill => (
-                  <div>
-                    <div class="flex justify-between text-xs mb-1">
-                      <span style="color: var(--color-text)">{skill.name}</span>
-                      <span style="color: var(--color-text-muted)">{skill.level}%</span>
+          {
+            skills.map((group) => (
+              <section
+                class="rounded-2xl p-6"
+                style="background-color: var(--color-surface); border: 1px solid var(--color-border)"
+              >
+                <h2
+                  class="text-xs font-mono uppercase tracking-widest mb-4"
+                  style="color: var(--color-accent)"
+                >
+                  {group.category}
+                </h2>
+                <div class="flex flex-col gap-3">
+                  {group.items.map((skill) => (
+                    <div>
+                      <div class="flex justify-between text-xs mb-1">
+                        <span style="color: var(--color-text)">
+                          {skill.name}
+                        </span>
+                        <span style="color: var(--color-text-muted)">
+                          {skill.level}%
+                        </span>
+                      </div>
+                      <div
+                        class="w-full h-1.5 rounded-full overflow-hidden"
+                        style="background-color: var(--color-surface-2)"
+                      >
+                        <div
+                          class="h-full rounded-full"
+                          style={`width: ${skill.level}%; background: linear-gradient(90deg, #7c3aed, #a78bfa)`}
+                        />
+                      </div>
                     </div>
-                    <div class="w-full h-1.5 rounded-full overflow-hidden" style="background-color: var(--color-surface-2)">
-                      <div class="h-full rounded-full" style={`width: ${skill.level}%; background: linear-gradient(90deg, #7c3aed, #a78bfa)`}></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          ))}
+                  ))}
+                </div>
+              </section>
+            ))
+          }
 
           <!-- Botón imprimir mobile -->
           <div class="flex flex-col gap-2 sm:hidden print:hidden">
-            <button onclick="window.print()" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200" style="background-color: var(--color-accent); color: white">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            <button
+              onclick="window.print()"
+              class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200"
+              style="background-color: var(--color-accent); color: white"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                ><polyline points="6 9 6 2 18 2 18 9"></polyline><path
+                  d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+                ></path><rect x="6" y="14" width="12" height="8"></rect></svg
+              >
               {t.cv.printPDFMobile}
             </button>
-            <a href="/cv-es.pdf" download class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200" style="background-color: var(--color-surface-2); border: 1px solid var(--color-border); color: var(--color-text)">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <a
+              href="/cv-es.pdf"
+              download
+              class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200"
+              style="background-color: var(--color-surface-2); border: 1px solid var(--color-border); color: var(--color-text)"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                ><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                ></path><polyline points="7 10 12 15 17 10"></polyline><line
+                  x1="12"
+                  y1="15"
+                  x2="12"
+                  y2="3"></line></svg
+              >
               {t.cv.downloadES}
             </a>
-            <a href="/cv-en.pdf" download class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200" style="background-color: var(--color-surface-2); border: 1px solid var(--color-border); color: var(--color-text)">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <a
+              href="/cv-en.pdf"
+              download
+              class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200"
+              style="background-color: var(--color-surface-2); border: 1px solid var(--color-border); color: var(--color-text)"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                ><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                ></path><polyline points="7 10 12 15 17 10"></polyline><line
+                  x1="12"
+                  y1="15"
+                  x2="12"
+                  y2="3"></line></svg
+              >
               {t.cv.downloadEN}
             </a>
           </div>
-
         </div>
       </div>
 
       <!-- Footer del CV -->
-      <p class="text-center text-xs mt-6 print:hidden" style="color: var(--color-text-muted)">
-        {t.cv.lastUpdated} · <a href="https://ngmigthy.netlify.app" class="hover:text-purple-400 transition-colors" style="color: var(--color-accent-light)">ngmigthy.netlify.app</a>
+      <p
+        class="text-center text-xs mt-6 print:hidden"
+        style="color: var(--color-text-muted)"
+      >
+        {t.cv.lastUpdated} · <a
+          href="https://ngmigthy.netlify.app"
+          class="hover:text-purple-400 transition-colors"
+          style="color: var(--color-accent-light)">ngmigthy.netlify.app</a
+        >
       </p>
-
     </div>
   </main>
 </Layout>
 
 <style>
   @media print {
-    @page { margin: 1cm; }
-    body { background: #0f0f14 !important; }
+    @page {
+      margin: 1cm;
+    }
+    body {
+      background: #0f0f14 !important;
+    }
   }
 </style>
